@@ -2,8 +2,8 @@
 
 <dom-module id="comment-list">
     <template>
-        <template is="dom-repeat" items="{{data}}" id="list">
-            <comment-model author="{{item.author}}" msg="{{item.msg}}">
+        <template is="dom-repeat" items="{{momentData}}" id="list">
+            <comment-model author="{{item.author}}" moment={{item.moment}} msg="{{item.msg}}">
             </comment-model>
         </template>
         <div hidden$="{{noCommentsHidden}}">No comments yet</div>
@@ -20,11 +20,26 @@
                     return [];
                 }
             },
+            momentData: {
+                type: Array,
+                value: function(){
+                    return [];
+                },
+                computed: '_computeMomentData(data)'
+            },
             noCommentsHidden: {
               type: Boolean,
               value: true,
               computed: '_computeNoCommentsHidden(data)'
             }
+        },
+        _computeMomentData: function(data){
+           data.forEach(function(comment){
+             if(comment.timestamp){
+               comment.moment = moment(comment.timestamp).fromNow();
+             }
+           });
+           return data;
         },
         _computeNoCommentsHidden: function(data){
             if(typeof data === 'undefined') {
