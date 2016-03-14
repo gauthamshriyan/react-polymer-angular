@@ -16,6 +16,14 @@
 			"required": true,
 			"id": "msg",
 			"order": 1
+		},
+		"timestamp": {
+			"name": "timestamp",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "timestamp",
+			"order": 2
 		}
 	}
 }

@@ -31,7 +31,8 @@ var CommentForm = React.createClass({
     if (!msg || !author) {
       return;
     }
-    this.props.onCommentSubmit({author: author, msg: msg});
+    const timestamp = new Date().getTime();
+    this.props.onCommentSubmit({author, msg, timestamp});
     React.findDOMNode(this.refs.author).value = '';
     React.findDOMNode(this.refs.msg).value = '';
     return;
@@ -48,4 +49,3 @@ var CommentForm = React.createClass({
 });
 
 module.exports = CommentForm;
-

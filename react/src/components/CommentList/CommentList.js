@@ -4,7 +4,7 @@ var React = require('react/addons');
 var CommentModel = require('components/Comment/Comment');
 
 require('./CommentList.css');
-
+import moment from 'moment';
 /*
 
  ## Example
@@ -24,9 +24,12 @@ var CommentList = React.createClass({
 
   render: function () {
     var commentNodes = this.props.data.map(function (comment) {
+      if(comment.timestamp){
+        comment.moment = moment(comment.timestamp).fromNow();
+      }
       return (
         <CommentModel author={comment.author} key={comment.id}>
-          {comment.msg}
+          {comment.msg} - {comment.moment}
         </CommentModel>
       );
     });
@@ -40,4 +43,3 @@ var CommentList = React.createClass({
 
 
 module.exports = CommentList;
-
