@@ -25,4 +25,9 @@ describe('Comment', function () {
     expect(component.refs.msg.props.children).toBe('hola');
   });
 
+  it('should render the moment', function (){
+   component = TestUtils.renderIntoDocument(<Comment moment='20 minutes ago'>hola</Comment>);
+   expect(component.refs.moment.props.children).toBe('20 minutes ago');
+  });
+
 });

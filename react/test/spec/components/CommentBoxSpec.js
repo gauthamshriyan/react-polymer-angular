@@ -21,12 +21,14 @@ describe('CommentBox', function () {
 
   describe('once it is rendered', function(){
 
+    let timestamp = new Date().getTime();
+
     beforeEach(function(){
       component = TestUtils.renderIntoDocument(<CommentBox url="http://localhost:2403/comments/" pollInterval={2000}/>);
       request = jasmine.Ajax.requests.mostRecent();
       request.respondWith({
         status: 200,
-        responseText: "[{\"author\":\"Santiago Esteva\", \"msg\": \"Msg1\", \"id\":1}]"
+        responseText: "[{\"author\":\"Santiago Esteva\", \"msg\": \"Msg1\", \"id\" : 1, \"timestamp\": "+timestamp+" }]"
       });
     })
 
@@ -36,7 +38,7 @@ describe('CommentBox', function () {
     });
 
     it('should set state', function(){
-      expect(component.state.data).toEqual( [ { author : 'Santiago Esteva', msg : 'Msg1', id : 1 } ])
+      expect(component.state.data).toEqual( [ { author : 'Santiago Esteva', msg : 'Msg1', id : 1, timestamp: timestamp, moment:'a few seconds ago'} ])
     });
 
     it('should render a CommentList', function(){
