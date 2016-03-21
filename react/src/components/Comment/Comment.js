@@ -37,7 +37,7 @@ var CommentModel = React.createClass({
         <h2 className="commentAuthor" ref="author">
           {this.props.author}
         </h2>
-        <span ref="msg">{this.props.children}</span>
+        <span ref="msg">{this.props.children}</span> - <span ref="moment">{this.props.moment}</span>
       </div>
     );
   }
@@ -45,4 +45,3 @@ var CommentModel = React.createClass({
 
 
 module.exports = CommentModel;
-

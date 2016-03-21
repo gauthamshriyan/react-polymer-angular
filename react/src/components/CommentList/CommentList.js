@@ -28,8 +28,8 @@ var CommentList = React.createClass({
         comment.moment = moment(comment.timestamp).fromNow();
       }
       return (
-        <CommentModel author={comment.author} key={comment.id}>
-          {comment.msg} - {comment.moment}
+        <CommentModel moment={comment.moment} author={comment.author} key={comment.id}>
+          {comment.msg}
         </CommentModel>
       );
     });
