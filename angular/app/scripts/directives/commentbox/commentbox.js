@@ -23,9 +23,6 @@ angular.module('commentBox', ['commentList', 'commentForm'])
         var loadCommentsFromServer = function () {
           $http.get(scope.url)
             .success(function(data, status, headers, config){
-              data.forEach(function(comment){
-                comment.moment = moment(comment.timestamp).fromNow();
-              });
               scope.data = data;
             })
             .error(function(data, status, headers, config){

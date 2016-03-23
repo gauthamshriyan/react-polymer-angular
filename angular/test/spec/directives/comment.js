@@ -6,10 +6,10 @@ describe('Directive: comment', function () {
   beforeEach(module('comment'));
 
   var element, scope;
-
+  var timestamp = new Date().getTime();
   beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
-    element = angular.element('<comment-model author="Santiago">hola</comment-model>');
+    element = angular.element('<comment-model timestamp="'+timestamp+'" author="Santiago">hola</comment-model>');
     element = $compile(element)(scope);
     scope.$digest();
   }));
@@ -19,6 +19,6 @@ describe('Directive: comment', function () {
   });
 
   it('should render the msg', function (){
-    expect(element.find('span').html()).toBe('hola');
+    expect(element.find('span').text()).toBe('hola - a few seconds ago');
   });
 });

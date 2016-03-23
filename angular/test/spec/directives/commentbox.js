@@ -2,6 +2,8 @@
 
 describe('Directive: commentbox', function () {
 
+  var timestamp = new Date().getTime();
+
   // load the directive's module
   beforeEach(module('commentBox'));
 
@@ -9,7 +11,7 @@ describe('Directive: commentbox', function () {
 
   beforeEach(inject(function ($rootScope, $compile, $httpBackend) {
     httpBackend = $httpBackend;
-    httpBackend.when('GET', 'http://localhost:2403/comments/').respond({author: 'Santiago', msg: 'Msg 1', id:1});
+    httpBackend.when('GET', 'http://localhost:2403/comments/').respond({author: 'Santiago', msg: 'Msg 1', id:1, timestamp: timestamp});
     scope = $rootScope.$new();
     element = angular.element('<comment-box url="http://localhost:2403/comments/" poll-interval="10000"></comment-box>');
     element = $compile(element)(scope);
@@ -28,7 +30,7 @@ describe('Directive: commentbox', function () {
       scope.$digest();
       httpBackend.flush();
       var isolatedScope = element.isolateScope();
-      expect(isolatedScope.data).toEqual( { author : 'Santiago', msg : 'Msg 1', id : 1 })
+      expect(isolatedScope.data).toEqual( { author : 'Santiago', msg : 'Msg 1', id : 1, timestamp: timestamp})
     });
 
     it('should render a CommentList', function(){

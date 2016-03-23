@@ -10,8 +10,8 @@ angular.module('commentList', ['comment'])
   .directive('commentList', function () {
     return {
       template: '<div class="commentList">' +
-                  '<comment-model ng-repeat="comment in comments" author="{{comment.author}}">' +
-                    '{{comment.msg}} - {{comment.moment}}' +
+                  '<comment-model ng-repeat="comment in comments" timestamp={{comment.timestamp}} author="{{comment.author}}">' +
+                    '{{comment.msg}}' +
                   '</comment-model>' +
                   '<span ng-if="comments.length < 1">No comments yet</span>' +
                 '</div>',
