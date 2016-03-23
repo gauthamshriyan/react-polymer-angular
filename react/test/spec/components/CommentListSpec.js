@@ -21,7 +21,7 @@ describe('CommentList', function () {
      {'author': 'Santiago', 'msg': 'Now', timestamp: new Date().getTime(),id: 1},
      {'author': 'Pablo', 'msg': 'Minutes', timestamp: new Date().setTime(new Date().getTime() - 2*60000),id: 2},
      {'author': 'Superman', 'msg': 'Hours', timestamp: new Date().setTime(new Date().getTime() - 3*3600000),id: 3},
-     {'author': 'Batman', 'msg': 'Years', timestamp: new Date().setDate(new Date().getDate() - 4),id: 4}
+     {'author': 'Batman', 'msg': 'Days', timestamp: new Date().setDate(new Date().getDate() - 4),id: 4}
    ];
    component = TestUtils.renderIntoDocument(<CommentList data={comments}/>);
    let result = TestUtils.scryRenderedComponentsWithType(component, CommentModel);
@@ -61,7 +61,7 @@ describe('CommentList', function () {
 
  it('should render 4 days ago', function (){
    let comments = [
-     {'author': 'Batman', 'msg': 'Years', timestamp: new Date().setDate(new Date().getDate() - 4), id: 1}
+     {'author': 'Batman', 'msg': 'Days', timestamp: new Date().setDate(new Date().getDate() - 4), id: 1}
    ];
    component = TestUtils.renderIntoDocument(<CommentList data={comments}/>);
    var result = TestUtils.scryRenderedComponentsWithType(component, CommentModel);
